@@ -1,4 +1,4 @@
-ATG
+Setup
 ---------
 
 1. clone from git.
