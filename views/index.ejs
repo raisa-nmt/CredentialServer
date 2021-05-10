@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container mt-5 border border-dark rounded">
+        <h1 class="text-center">Welcome!</h1>
+        <hr>
+        <div class="text-justify">
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugiat laboriosam voluptates provident ullam
+                neque, voluptate quia dignissimos eligendi adipisci, doloremque cum odit dolores eaque ipsum corrupti,
+                harum officiis nesciunt tempora! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minus
+                voluptatum itaque officia magnam ipsa praesentium vitae, ducimus eum dicta eius inventore cumque
+                necessitatibus optio provident animi laborum voluptatem earum! Minus.</p>
+        </div>
+
+        <div class="col-md-6 mx-auto">
+            <div class="card">
+                <div class="card-header">Credentials</div>
+                <div class="card-body">
+                    <span>Server: </span><span class="font-italic font-weight-bold"><%= server || 'No Info' %>
+                    </span><br>
+                    <span>Username: </span><span><%= user.username %></span><br>
+                    <span>Password: </span><span><%= user.password %></span><br>
+
+                    <button id="red_url" class="btn btn-outline-info mx-auto mt-4 mb-2">Click Here!</button>
+                    <div class="text-muted text-sm">You will be redirected in <span
+                            id="time"><%= counter %></span>(s)
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
+
+    <script>
+        function openWindow() {
+            var server = '<%= server %>';
+            var win = window.open(server, '_blank');
+            (win) ? win.focus(): alert('Please allow popups for this website');
+        };
+    </script>
+    <script>
+        $(document).ready(function () {
+            const msg = $("#time");
+
+            var counter = '<%= counter %>';
+
+            var interval = setInterval(function () {
+                counter--;
+                msg.html(counter);
+
+                if (counter == 0) {
+                    clearInterval(interval);
+                    openWindow();
+                }
+            }, 1000);
+
+            $("#red_url").on('click', function(){
+                clearInterval(interval);
+                openWindow();
+            });
+        });
+    </script>
+</body>
+
+</html>
