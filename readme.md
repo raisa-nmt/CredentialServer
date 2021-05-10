@@ -5,7 +5,7 @@ Setup
 2. $ npm i
 3. $ cp env .env 
 4. edit dotenv variables
-5. $ node start
+5. $ npm start
 6. if '5' doesnot work, then $ node server.js
 
 
